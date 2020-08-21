@@ -644,8 +644,8 @@ class Converters(object):
         cellxh = abs(cellx) / 2.0
         cellyh = abs(celly) / 2.0
 
-        xcoords = np.arange(left + cellxh, left + cellxh + dst_width * abs(cellx), cellx)
-        ycoords = np.arange(top - cellyh, top - cellyh - dst_height * abs(celly), -celly)
+        xcoords = np.arange(left + cellxh, left + cellxh + dst_width * abs(cellx), cellx)[:dst_width]
+        ycoords = np.arange(top - cellyh, top - cellyh - dst_height * abs(celly), -celly)[:dst_height]
 
         attrs = {'transform': dst_transform[:6],
                  'crs': dataframe.crs,

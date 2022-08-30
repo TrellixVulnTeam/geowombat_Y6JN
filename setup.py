@@ -14,6 +14,10 @@ except:
     raise ImportError('NumPy must be installed to build GeoWombat.')
 
 
+with open('src/geowombat/__init__.py') as f:
+    version = f.readlines()[1].replace("__version__ = ", "").strip()[1:-1]
+
+
 compile_args = ['-fopenmp']
 link_args = ['-fopenmp']
 
@@ -51,6 +55,8 @@ def get_extensions():
 
 def setup_package():
     metadata = dict(
+        name='geowombat',
+        version=version,
         ext_modules=cythonize(get_extensions()),
         include_dirs=[np.get_include()]
     )
